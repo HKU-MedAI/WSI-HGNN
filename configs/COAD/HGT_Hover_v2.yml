@@ -1,0 +1,65 @@
+#### general settings
+name: PointHet
+train_type: gnn
+eval_type: homo-graph
+gpu_ids: '0'
+
+#### datasets
+datasets:
+  dataset: "COAD"
+  wsi_path: "./data/COAD/"
+  train_path: "./data/COADv2_hover_lv0/list/heterogeneous_train.txt"
+  eval_path: "./data/COADv2_hover_lv0/list/heterogeneous_test.txt"
+  normal_path: "./data/biomedical_data/normal_list.txt"
+  has_graph: True
+  num_workers: 16
+
+#### Checkpoint settings
+checkpoint:
+  path: "./checkpoints/HGT_COADv2_hover_lv0/"
+  save_checkpoint_freq: 10
+
+#### Patches extractor settings
+selector:
+
+  n_channel: 3
+  pixel_th: 200
+
+  level: 2
+  patch_size: 256
+  verbose: 0
+
+#### Optimizer settings
+optimizer:
+  opt_method: "ADAM"
+  lr: 0.00001  # Learning rate
+  weight_decay: 0.001
+
+#### KNN settings
+KNN:
+  radius: 6
+
+#### GNN settings
+GNN:
+  name: "HGT"
+
+  n_node_types: 6
+  edge_types: ["pos", "neg"]
+  num_meta_paths: 3
+  num_layers: 2
+  in_dim: 1024
+  hidden_dim: 200
+  out_dim: 2
+  num_heads: 4
+  num_out_heads: 1
+  feat_drop: 0.4
+
+#### training settings: learning rate scheme, loss, optimizer
+train:
+  num_epochs: 500
+  batch_size: 1
+
+  loss: "CE"
+
+eval:
+  explain_path: "./plots/HGT_COAD_Hover_expl/"

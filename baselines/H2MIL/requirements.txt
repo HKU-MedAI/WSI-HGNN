@@ -1,0 +1,15 @@
+joblib==1.1.0
+matplotlib==3.5.0
+numpy==1.21.2
+openslide_python==1.1.2
+pandas==1.2.5
+Pillow==9.0.1
+scikit_learn==1.0.2
+scipy==1.7.1
+scikit-image
+torch==1.10.1
+torch_geometric==2.0.3
+torch_scatter==2.0.9
+torch_sparse==0.6.12
+torchvision==0.11.2
+tqdm==4.62.3

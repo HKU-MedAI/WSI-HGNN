@@ -1,0 +1,66 @@
+#### general settings
+name: PointHet
+train_type: gnn
+eval_type: homo-graph
+gpu_ids: '0'
+
+#### datasets
+datasets:
+  dataset: "BRCA"
+  wsi_path: "./data/BRCA/testing/images"
+  task: "cancer classification"
+  train_path: "./data/BRCA_kimia_lv0/5fold_balanced/fold_4/train.txt"
+  eval_path: "./data/BRCA_kimia_lv0/5fold_balanced/fold_4/test.txt"
+  valid_path: "./data/BRCA_kimia_lv0/5fold_balanced/fold_4/val.txt"
+  normal_path: "./data/biomedical_data/normal_list_BRCA.txt"
+  has_graph: True
+  num_workers: 16
+
+#### Checkpoint settings
+checkpoint:
+  path: "./checkpoints/HEAT4_BRCA_Kimia_lv0_balanced_cls_f4"
+  save_checkpoint_freq: 5
+
+#### Patches extractor settings
+selector:
+
+  n_channel: 3
+  pixel_th: 200
+
+  level: 5
+  patch_size: 256
+  verbose: 0
+
+#### Optimizer settings
+optimizer:
+  opt_method: "ADAM"
+  lr: 0.00001 # Learning rate
+  weight_decay: 0.005
+
+#### GNN settings
+GNN:
+  name: "HEAT4"
+
+  n_node_types: 6
+
+  num_meta_paths: 3
+  num_layers: 2
+  in_dim: 1024
+  hidden_dim: 512
+  out_dim: 2
+  n_heads: 4
+  num_out_heads: 1
+  feat_drop: 0.2
+
+  graph_pooling_type: mean
+
+#### training settings: learning rate scheme, loss, optimizer
+train:
+  num_epochs: 500
+  batch_size: 2
+
+  loss: "CE"
+
+eval:
+  explainer_name: GemExplainer
+  explain_path: "./plots/HEAT4_BRCA_full_Kimia_lv0_expl_typing/"

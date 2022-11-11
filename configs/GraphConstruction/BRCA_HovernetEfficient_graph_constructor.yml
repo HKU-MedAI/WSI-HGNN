@@ -1,0 +1,29 @@
+graph_constructor:
+  dataset: BRCA
+  task: "cancer staging"
+  data_root: "./data/BRCA"
+  hovernet_data_root: "./data/hovernet_json"
+  patch_path: "./data/patches/BRCA/patches_lv0_ps256/"
+  out_dir: "./data/BRCA_eff_lv0"
+  node_type_dir:
+  encoder_name: 'efficientnet-b4'
+  patch_size: 256
+  feature_dim: 1024
+  radius: 9
+  level: 0
+  n_channel: 3
+  n_node_type: 6
+  verbose: 0
+
+hovernet_config:
+  nr_types: 6
+  mode: fast
+  hovernet_model_path: './data/weights/hovernet_fast_pannuke_type_tf2pytorch.tar'
+  type_info_path: 'type_info.json'
+  batch_size: 32
+
+kimianet_config:
+  kimianet_model_path: './data/weights/KimiaNetPyTorchWeights.pth'
+  batch_size: 32
+  
+

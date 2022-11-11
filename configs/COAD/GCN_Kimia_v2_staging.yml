@@ -1,0 +1,61 @@
+#### general settings
+name: PointHet
+train_type: gnn
+eval_type: homo-graph
+gpu_ids: '0'
+
+#### datasets
+datasets:
+  dataset: "COAD"
+  task: "cancer staging"
+  wsi_path: "./data/COAD/"
+  train_path: "./data/COAD_kimia_lv0/list_staging_f4/homogeneous_train.txt"
+  eval_path: "./data/COAD_kimia_lv0/list_staging_f4/homogeneous_test.txt"
+  valid_path: "./data/COAD_kimia_lv0/list_staging_f4/homogeneous_val.txt"
+  normal_path: "./data/clinical_data/staging.txt"
+  has_graph: True
+  num_workers: 16
+
+#### Checkpoint settings
+checkpoint:
+  path: "./checkpoints/GCN_COAD_Kimia_full_staging_att_f4/"
+  save_checkpoint_freq: 5
+
+#### Patches extractor settings
+selector:
+
+  n_channel: 3
+  pixel_th: 200
+
+  level: 4
+  patch_size: 256
+  verbose: 0
+
+#### Optimizer settings
+optimizer:
+  opt_method: "ADAM"
+  lr: 0.0001  # Learning rate
+  weight_decay: 0.0001
+
+#### GNN settings
+GNN:
+    name: "GCN"
+
+    num_layers: 2
+    in_dim: 1024
+    hidden_dim: 256
+    out_dim: 4
+    feat_drop: 0.2
+
+    graph_pooling_type: att
+
+#### training settings: learning rate scheme, loss, optimizer
+train:
+  num_epochs: 500
+  batch_size: 2
+
+  loss: "CE"
+
+#### evaluation settings: learning rate scheme, loss, optimizer
+eval:
+  explain_path: "./plots/GCN_COAD_Hover_expl_typing/"

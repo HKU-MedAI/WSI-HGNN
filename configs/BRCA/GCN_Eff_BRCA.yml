@@ -1,0 +1,64 @@
+#### general settings
+name: PointHet
+train_type: gnn
+eval_type: homo-graph
+gpu_ids: '0'
+
+#### datasets
+datasets:
+  dataset: "BRCA"
+  task: "cancer classification"
+  wsi_path: "./data/BRCA/WSI/test/"
+  train_path: "./data/BRCA_eff_lv0/list_f1/homogeneous_train.txt"
+  eval_path: "./data/BRCA_eff_lv0/list_f1/homogeneous_test.txt"
+  valid_path: "./data/BRCA_eff_lv0/list_f1/homogeneous_val.txt"
+  normal_path: "./data/biomedical_data/normal_list_BRCA.txt"
+  has_graph: True
+  num_workers: 16
+
+#### Checkpoint settings
+checkpoint:
+  path: "./checkpoints/GCN_BRCA_Eff_lv0_f1/"
+  save_checkpoint_freq: 5
+
+#### Patches extractor settings
+selector:
+
+  n_channel: 3
+  pixel_th: 200
+
+  verbose: 0
+
+#### Optimizer settings
+optimizer:
+  opt_method: "ADAM"
+  lr: 0.0001  # Learning rate
+  weight_decay: 0
+
+#### GNN settings
+GNN:
+    name: "GCN"
+
+    num_layers: 3
+    in_dim: 1024
+    hidden_dim: 256
+    out_dim: 2
+    feat_drop: 0.4
+
+    graph_pooling_type: att
+
+#### training settings: learning rate scheme, loss, optimizer
+train:
+  num_epochs: 500
+  batch_size: 1
+
+  loss: "CE"
+
+#### evaluation settings: learning rate scheme, loss, optimizer
+eval:
+  explainer_name: "GNNExplainer"
+
+  level: 5
+  patch_size: 256
+
+  explain_path: "./plots/GCN_COAD_Kimia_expl/"

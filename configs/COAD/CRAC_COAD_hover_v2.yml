@@ -1,0 +1,63 @@
+#### general settings
+name: PointHet
+train_type: hgnn
+eval_type: homo-graph
+gpu_ids: '0'
+
+#### datasets
+datasets:
+  dataset: "COAD"
+  wsi_path: "./data/COAD/testing/images"
+  train_path: "./data/COADv2_hover_lv0/list/heterogeneous_train.txt"
+  eval_path: "./data/COADv2_hover_lv0/list/heterogeneous_test.txt"
+  valid_path: "./data/COADv2_hover_lv0/list/heterogeneous_val.txt"
+  normal_path: "./data/biomedical_data/normal_list.txt"
+  has_graph: True
+  num_workers: 16
+
+#### Checkpoint settings
+checkpoint:
+  path: "./checkpoints/CRAC_COADv2_Hover_sumpool"
+  save_checkpoint_freq: 5
+
+#### Patches extractor settings
+selector:
+
+  n_channel: 3
+  pixel_th: 200
+
+  level: 5
+  patch_size: 256
+  verbose: 0
+
+#### Optimizer settings
+optimizer:
+  opt_method: "ADAM"
+  lr: 0.0005 # Learning rate
+  weight_decay: 0.001
+
+#### GNN settings
+GNN:
+  name: "CRAC"
+
+  n_node_types: 6
+
+  num_meta_paths: 3
+  num_layers: 2
+  in_dim: 1024
+  hidden_dim: 512
+  out_dim: 2
+  num_heads: 4
+  num_out_heads: 1
+  feat_drop: 0.2
+
+#### training settings: learning rate scheme, loss, optimizer
+train:
+  num_epochs: 500
+  batch_size: 1
+
+  loss: "CE"
+
+eval:
+  explainer_name: GemExplainer
+  explain_path: "./plots/CRAC_COAD_v2_Hover_Eff/"

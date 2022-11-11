@@ -1,0 +1,62 @@
+#### general settings
+name: PointHet
+train_type: point-het
+eval_type: homo-graph
+gpu_ids: '0'
+
+#### datasets
+datasets:
+  dataset: "COAD"
+  wsi_path: "./data/COAD/"
+  train_path: "./data/HovernetCOAD_graph_dataset/balance_list/homogeneous_train.txt"
+  eval_path: "./data/HovernetCOAD_graph_dataset/balance_list/homogeneous_testval.txt"
+  normal_path: "./data/biomedical_data/normal_list.txt"
+  has_graph: True
+  num_workers: 16
+
+#### Checkpoint settings
+checkpoint:
+  path: "./checkpoints/GAT_COAD_Hovernet"
+  save_checkpoint_freq: 10
+
+#### Patches extractor settings
+selector:
+
+  n_channel: 3
+  pixel_th: 200
+
+  level: 2
+  patch_size: 256
+  verbose: 0
+
+#### Optimizer settings
+optimizer:
+  opt_method: "ADAM"
+  lr: 0.00005  # Learning rate
+  weight_decay: 0.0001
+
+#### GNN settings
+GNN:
+  name: "GAT"
+  negative_slope: 0.2
+  num_layers: 2
+  in_dim: 1024
+  hidden_dim: 8
+  residual: True
+  in_drop: 0.2
+  attn_drop: 0.2
+  out_dim: 2
+  num_heads: 4
+  num_out_heads: 1
+  feat_drop: 0.2
+
+#### training settings: learning rate scheme, loss, optimizer
+train:
+  num_epochs: 150
+  batch_size: 64
+
+  loss: "CE"
+
+#### evaluation settings: learning rate scheme, loss, optimizer
+eval:
+  explain_path: "./plots/GAT_COAD_Hover_expl/"
