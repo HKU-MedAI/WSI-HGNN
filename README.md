@@ -1,6 +1,6 @@
 This repository provides the Pytorch implementations for "Histopathology Whole Slide Image Analysis with Heterogeneous Graph Representation Learning"
 
-Paper can be found [here] (https://openaccess.thecvf.com/content/CVPR2023/html/Chan_Histopathology_Whole_Slide_Image_Analysis_With_Heterogeneous_Graph_Representation_Learning_CVPR_2023_paper.html) and video walkthrough is [here](https://youtu.be/F47ureXZ7fo).
+Paper can be found [here](https://openaccess.thecvf.com/content/CVPR2023/html/Chan_Histopathology_Whole_Slide_Image_Analysis_With_Heterogeneous_Graph_Representation_Learning_CVPR_2023_paper.html) and video walkthrough is [here](https://youtu.be/F47ureXZ7fo).
 
 # Download the WSIs
 
