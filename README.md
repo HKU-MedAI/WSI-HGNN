@@ -1,8 +1,10 @@
 This repository provides the Pytorch implementations for "Histopathology Whole Slide Image Analysis with Heterogeneous Graph Representation Learning"
 
+Paper can be found [here](https://openaccess.thecvf.com/content/CVPR2023/html/Chan_Histopathology_Whole_Slide_Image_Analysis_With_Heterogeneous_Graph_Representation_Learning_CVPR_2023_paper.html)
+
 # Download the WSIs
 
-The WSIs can be found from the TCGA project:
+The WSIs can be found in the TCGA project:
 
 https://www.cancer.gov/about-nci/organization/ccg/research/structural-genomics/tcga
 
