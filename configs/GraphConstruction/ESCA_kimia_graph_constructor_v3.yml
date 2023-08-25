@@ -1,0 +1,31 @@
+graph_constructor:
+  dataset: ESCA
+  task: "cancer typing"
+  data_root: "./data/ESCA/"
+  patch_path: "./data/gtnmil_data/patches/ESCA/"
+  hovernet_data_root: "./data/hovernet_json"
+  out_dir: "./data/ESCA_kimia_lv0/"
+  feat_dir: "./data/gtnmil_data/graphs/ESCA_graphs/simclr_files/"
+  node_type_dir: null
+  encoder_name: 'kimia'
+  patch_size: 256
+  feature_dim: 1024
+  radius: 7
+  level: 2
+  n_channel: 3
+  n_node_type: 6
+  verbose: 0
+  use_kimia: False
+
+hovernet_config:
+  nr_types: 6
+  mode: fast
+  hovernet_model_path: './data/weights/hovernet_fast_pannuke_type_tf2pytorch.tar'
+  type_info_path: 'type_info.json'
+  batch_size: 128
+
+kimianet_config:
+  kimianet_model_path: './data/weights/KimiaNetPyTorchWeights.pth'
+  batch_size: 1
+  
+
